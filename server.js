@@ -83,8 +83,11 @@ server.get('/weather', (req, res) => {
         res.send('Error! Please enter a valid city');
         console.log(weatherData);
     }
-    
+
 });
 server.listen(PORT, () => {
     console.log(`server started on ${PORT}`);
 });
+
+
+// https://city-explorer-api-yousef.herokuapp.com/weather?searchQuery=Amman
