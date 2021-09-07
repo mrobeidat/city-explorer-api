@@ -58,14 +58,14 @@ class Forecast {
 }
 
 // http://localhost:3050/weather?searchQuery=Amman
-server.get('/weather', (req, res) => {
+server.get('/', (req, res) => {
 
     const searchQuery = req.query.searchQuery;
-    const lat = req.query.latitude;
-    const lon = req.query.longitudinal;
+    // const lat = req.query.latitude;
+    // const lon = req.query.longitudinal;
 
     const weather = weatherData.find((item) => {
-        if (item.city_name === searchQuery || item.lat === lon || item.lon === lat) {
+        if (item.city_name === searchQuery ) {
             return (item);
         }
     });
@@ -91,3 +91,4 @@ server.listen(PORT, () => {
 
 
 // https://city-explorer-api-yousef.herokuapp.com/weather?searchQuery=Amman
+
