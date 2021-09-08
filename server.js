@@ -1,44 +1,47 @@
+
+
+// // http://localhost:3050/weather?searchQuery=Amman
+
+
+// // https://city-explorer-api-yousef.herokuapp.com/weather?searchQuery=Amman
+
+
+// // https://api.weatherbit.io/v2.0/forecast/daily?city=Amman&key=6d85615ad1764c9e93f5aa52c55363d0
+
+
+
+
 'use strict';
 
-const express = require('express');
+require('dotenv').config();
 
-const weatherData = require('./data/weather.json');
+let express = require('express');
 
-
-
-const server = express();
+let cors = require('cors');
 
 
-const PORT = 3050;
+let PORT = process.env.PORT;
 
-//http://localhost:3050/city?name=Amman
+let server = express();
 
-server.get('/city', (req, res) => {
-    const name = req.query.name;
-    const result = weatherData.find((item) => {
-        if (item.city_name === name)
-            return item.data.data[3].lat;
-    })
+server.use(cors());
 
-const newArr= name.data.map((item)=> {
+const getWeather = require('./weather')
 
-    const Arr= [];
-    newArr.push(item.weather.description, item.weather.valid_date)
-    return Arr;
+const getMovie = require('./movies')
+
+server.get('/movie', getMovie);
+
+
+// http://localhost:3050/daily?city=Amman&key=6d85615ad1764c9e93f5aa52c55363d0
+server.get('/daily', getWeather);
+
+server.get('*', (req, res) => {
+
+    res.status(404).send('Sorry, page not found');
 })
-
-    res.send(newArr);
-})
-
-
-
-
-
-
-
-
 server.listen(PORT, () => {
 
-
-    console.log(`hello from server ${PORT}`);
+    console.log(`this is my ${PORT}`);
 })
+
