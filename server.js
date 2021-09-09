@@ -30,7 +30,7 @@ const getWeather = require('./weather')
 
 const getMovie = require('./movies')
 
-server.get('/movie', getMovie);
+server.get('/movies', getMovie);
 
 
 // http://localhost:3050/daily?city=Amman&key=6d85615ad1764c9e93f5aa52c55363d0
