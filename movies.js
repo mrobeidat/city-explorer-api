@@ -10,8 +10,8 @@ const Memory = {};
 
 function getMovie(req, res) {
 
-  let query = req.query.searchQuery;
-  // let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIES_API_key}&query=${query}`;
+  const query = req.query.searchQuery;
+  // const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIES_API_key}&query=${query}`;
 
   if (Memory[query] !== undefined) {
     res.send(Memory[query]);
@@ -20,7 +20,7 @@ function getMovie(req, res) {
 
   else 
   {
-    let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIES_API_key}&query=${query}`;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIES_API_key}&query=${query}`;
 
     axios
       .get(url)

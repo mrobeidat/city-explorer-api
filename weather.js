@@ -9,21 +9,21 @@ const Memory = {};
 
 function getWeatherInfo(req, res) {
 
-    let query = req.query.city;
-    // let url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${query}&key=${process.env.WEATHER_API_key}`;
+    const query = req.query.city;
+    // const url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${query}&key=${process.env.WEATHER_API_key}`;
 
     if (Memory[query] != undefined) {
         res.send(Memory[query]);
     } 
     else
     {
-        let url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${query}&key=${process.env.WEATHER_API_key}`;
+        const url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${query}&key=${process.env.WEATHER_API_key}`;
     }
     axios
         .get(url)
         .then(result => {
 
-            let newWeather = result.data.data.map(item => {
+            const newWeather = result.data.data.map(item => {
                 return new Forecast(item);
 
             })
